@@ -11,31 +11,38 @@ keys.forEach(key=>{
 
 function calculate(){
     let buttonText = this.innerText;
-    if(buttonText==="AC"){
+    switch (buttonText) {
+        case "AC":
         output.innerText = "";
         result.innerText = "0";
         result.style.animation = "";
         output.style.animation = "";
-        return;
-    }
+        break;
+    
 
-    if(buttonText === "DEL"){
-        output.textContent = output.textContent.substr(0,output.textContent.length-1);
-        return;
-    }
+    case "DEL":
+            output.textContent = output.textContent.substr(0, output.textContent.length - 1);
+            break;
+    
 
-    if(buttonText === "="){
+  
+    case "=":
+        try {
         result.innerText = eval(output.innerText);
         result.style.animation = "big 0.5s ease-in-out";
         output.style.animation = "small 0.5s ease-in-out";
         result.style.animationFillMode = "forwards";
         output.style.animationFillMode = "forwards";
     }
+catch {
+    result.innerText = "Error";
+}
+break;    
 
-    else{
+    default:
         output.textContent += buttonText;
-        return;
-    }
+        break;
+}
 
 
 }
